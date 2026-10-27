@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participa | SIMMA ECO</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Explicacion.css">
+</head>
+<body>
+    <main class="contenedor">
+        <section class="formulario-card">
+
+            <!-- Botón para volver a la interfaz de inicio -->
+            <a href="inicio.html" class="btn-volver"
+               style="display:inline-block; margin-bottom:15px; padding:8px 16px;
+                      border:1px solid currentColor; border-radius:8px;
+                      text-decoration:none; font-family:'Poppins',sans-serif;
+                      font-size:14px; font-weight:500; color:inherit;">
+                ← Volver al inicio
+            </a>
+
+            <div class="encabezado">
+                <div class="logo">♻️</div>
+                <h1>SIMMA <span>ECO</span></h1>
+                <p>Juntos transformamos residuos en oportunidades.</p>
+            </div>
+
+            <div class="titulo-formulario">
+                <h2>¡Participa!</h2>
+                <p>Completa tus datos y ayúdanos a cuidar el planeta.</p>
+            </div>
+
+            <form id="formularioParticipa" action="https://formspree.io/f/xwlllyok" method="POST">
+
+                <div class="campo">
+                    <label for="nombre">Nombre de persona o empresa *</label>
+                    <input id="nombre" name="nombre" type="text"
+                           placeholder="Escribe tu nombre o empresa" required>
+                </div>
+
+                <div class="campo">
+                    <label for="documento">NIT o cédula *</label>
+                    <input id="documento" name="documento" type="text"
+                           placeholder="Número de identificación" required>
+                </div>
+
+                <div class="fila">
+                    <div class="campo">
+                        <label for="email">Correo electrónico *</label>
+                        <input id="email" name="email" type="email"
+                               placeholder="correo@ejemplo.com" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="telefono">Teléfono</label>
+                        <input id="telefono" name="telefono" type="tel"
+                               placeholder="Tu número">
+                    </div>
+                </div>
+
+                <div class="campo">
+                    <label for="tipo_persona">Tipo de persona</label>
+                    <input id="tipo_persona" name="tipo_persona" type="text"
+                           placeholder="Ej. ciudadano, reciclador, empresa">
+                </div>
+
+                <div class="campo">
+                    <label for="tipo_material">Material que puedes aportar</label>
+                    <input id="tipo_material" name="tipo_material" type="text"
+                           placeholder="Ej. cartón, plástico PET, vidrio">
+                </div>
+
+                <div class="campo">
+                    <label for="cantidad_kg">Cantidad aproximada (kg)</label>
+                    <input id="cantidad_kg" name="cantidad_kg" type="number"
+                           min="0" step="0.01" placeholder="Ej. 25">
+                </div>
+
+                <div class="campo">
+                    <label for="localidad">Localidad</label>
+                    <input id="localidad" name="localidad" type="text"
+                           placeholder="Escribe tu localidad">
+                </div>
+
+                <div class="campo">
+                    <label for="observaciones">Observaciones</label>
+                    <textarea id="observaciones" name="observaciones"
+                              rows="4"
+                              placeholder="Cuéntanos más sobre el material o tu solicitud..."></textarea>
+                </div>
+
+                <button id="btnEnviar" type="submit">
+                    Enviar formulario <span>➜</span>
+                </button>
+
+                <p id="mensaje" role="status" aria-live="polite"></p>
+
+                <p class="privacidad">
+                    ♻️ Gracias por contribuir a un futuro más sostenible.
+                </p>
+
+            </form>
+        </section>
+    </main>
+
+    <script>
+        const form = document.getElementById("formularioParticipa");
+        const boton = document.getElementById("btnEnviar");
+        const mensaje = document.getElementById("mensaje");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            boton.disabled = true;
+            mensaje.textContent = "Enviando...";
+
+            try {
+                const resp = await fetch(form.action, {
+                    method: "POST",
+                    body: new FormData(form),
+                    headers: { "Accept": "application/json" }
+                });
+
+                if (resp.ok) {
+                    mensaje.textContent = "¡Gracias! Tus datos fueron registrados correctamente.";
+                    form.reset();
+                } else {
+                    mensaje.textContent = "No se pudo enviar. Revisa los datos e intenta de nuevo.";
+                }
+            } catch (err) {
+                mensaje.textContent = "Error de conexión. Intenta de nuevo.";
+            } finally {
+                boton.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
+

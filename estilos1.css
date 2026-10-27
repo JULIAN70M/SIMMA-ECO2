@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.inicio {
+    width: 100%;
+    height: 100vh;
+
+    background-image: url("Naturaleza.png");
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+}
+
+.contenido {
+    color: rgb(12, 2, 2);
+    max-width: 800px;
+}
+
+.contenido h1 {
+    font-family:sans-serif;
+   font-weight: 800;
+
+    font-size: 70px;
+    margin-bottom: 20px;
+}
+
+.contenido p {
+    font-weight: 400;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.img2 {
+    display:flex;
+    width: 200px;
+    height: 80px;
+
+  
+    background-size:cover ;
+    background-position:absolute ;
+
+    display: flex;
+    justify-content: left;
+    align-items: left;
+
+    text-align: left;
+
+}
+.boton1{
+     display: inline-block;
+    margin-top: 12px;
+    padding: 14px 25px;
+    color: rgb(122, 6, 237);
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: 0.3s;
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    width: 140px;
+    height: 45px;
+}
+
+.boton2 {
+    display: inline-block;
+    color: blueviolet;
+    font-size: medium;
+    position: fixed;
+    bottom: 10px;
+    right: 1100px;
+    width: 140px;
+    height: 45px;
+
+}
